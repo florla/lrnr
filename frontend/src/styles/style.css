@@ -1,0 +1,49 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+body,
+html {
+    width: 100%;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.main-header,
+.sub-header {
+    font-family: 'Trispace', sans-serif;
+}
+
+.bottom-footer {
+    position: absolute;
+    max-width: 100vw;
+    width: 100%;
+    bottom: 0;
+}
+
+.header-5 {
+    font-size: 1.64rem;
+}
+
+.quiz-transition,
+.block-transition {
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
