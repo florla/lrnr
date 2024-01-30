@@ -6,6 +6,7 @@ import Categories from './pages/Categories';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Questionaire from './pages/Questionaire';
+import Result from './pages/Result';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/questionaire" element={<Questionaire />} />
+          <Route path="/result" element={<Result />} />
         </Routes>
         <Footer />
       </Router>
