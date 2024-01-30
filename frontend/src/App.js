@@ -5,6 +5,7 @@ import Account from './pages/Account';
 import Categories from './pages/Categories';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Questionaire from './pages/Questionaire';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/account" element={<Account />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/questionaire" element={<Questionaire />} />
         </Routes>
         <Footer />
       </Router>
