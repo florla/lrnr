@@ -35,7 +35,7 @@ export default function Categories() {
             <div className="container">
                 <div className="section">
                     <div className="row">
-                        <div className="col">
+                        <div className="co">
                             <h3>Quiz Generation Options</h3>
                         </div>
 
