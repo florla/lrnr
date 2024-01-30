@@ -22,7 +22,7 @@ const QuizComponent = () => {
                             </div>
                         </div>
                         <div className="col s12 header-5 quiz-transition" id="questionBlock">
-                            {/* Add your question content here */}
+                            {/* Add question content here */}
                         </div>
                     </div>
                 </div>
