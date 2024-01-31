@@ -1,7 +1,10 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 async function getQuestions(top, exp, num, sty) {
