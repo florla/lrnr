@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 export default function Categories_Main() {
     const [topic, setTopic] = useState("");
@@ -55,6 +56,7 @@ export default function Categories_Main() {
         setIsExpertiseDropdownOpen(false);
         setIsNumberDropdownOpen(false);
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const details = {
@@ -63,7 +65,15 @@ export default function Categories_Main() {
             numQuestions: number,
             style: style,
         };
-        console.log(details)
+        console.log(details);
+        try {
+            let res = await axios.post('http://localhost:5000/questions', details);
+            let result = await res.data;
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
 
