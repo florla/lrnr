@@ -3,8 +3,8 @@ import React, { useState } from "react";
 export default function Categories_Main() {
     const [topic, setTopic] = useState("");
     const [expertise, setExpertise] = useState("");
-    const [number, setNumber] = useState("5");
-    const [style, setStyle] = useState("normal");
+    const [number, setNumber] = useState("");
+    const [style, setStyle] = useState("");
 
     // Separate states for dropdown visibility
     const [isTopicDropdownOpen, setIsTopicDropdownOpen] = useState(false);
@@ -55,6 +55,17 @@ export default function Categories_Main() {
         setIsExpertiseDropdownOpen(false);
         setIsNumberDropdownOpen(false);
     };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const details = {
+            topic: topic,
+            expertise: expertise,
+            numQuestions: number,
+            style: style,
+        };
+        console.log(details)
+    }
+
 
     return (
         <>
@@ -76,7 +87,7 @@ export default function Categories_Main() {
                         </div>
                     </div>
                     <br />
-                    <div className="row">
+                    <form className="row" onSubmit={handleSubmit}>
                         <div className="input-field col s12">
                             <div className="select-wrapper">
                                 <input
@@ -466,7 +477,7 @@ export default function Categories_Main() {
                                 Submit
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>
