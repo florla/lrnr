@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
     return (
@@ -20,7 +21,9 @@ export default function Home() {
                         <p class="header-5 col s12 light sub-header">Your guided path to programming enlightenment</p>
                     </div>
                     <div class="row center">
-                        <a id="download-button" class="btn-large waves-effect waves-light teal" onclick="login()">Begin Journey</a>
+                    <Link to="/categories" id="download-button" className="btn-large waves-effect waves-light teal">
+                    Begin Journey
+                </Link>
                     </div>
                     <br /><br />
 
