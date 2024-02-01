@@ -1,7 +1,11 @@
 import OpenAI from "openai";
 import dotenv from 'dotenv';
+import express from 'express';
 
 dotenv.config();
+
+const app= express();
+const port = 5000;
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -62,3 +66,32 @@ async function getEvaluation(ques, sub) {
 }
 
 // getEvaluation('Ahoy there! What be the symbol for strict equality in JavaScript?', 'The symbol is ===');
+
+
+app.use(express.json());
+
+app.get('/', (_req, res) => {
+    res.send('Hello LRNR!');
+}
+);
+
+
+app.post('/questions', async (req, res) => {
+    const {topic, expertise, numQuestions, style} = req.body;
+    const questions = await getQuestions(topic, expertise, numQuestions, style);
+    res.json(questions);
+}       
+);
+
+app.post('/evaluation', async (req, res) => {
+    const {question, submission} = req.body;
+    const evaluation = await getEvaluation(question, submission);
+    res.json(evaluation);
+}   
+);  
+
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
+}
+);
+
