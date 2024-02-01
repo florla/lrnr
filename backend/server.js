@@ -83,19 +83,23 @@ app.get('/', (_req, res) => {
 );
 
 
-app.post('/questions', async (req, res) => {
-  const { topic, expertise, numQuestions, style } = req.body;
+app.get('/questions', async (req, res) => {
+  const topic = req.query.topic;
+  const expertise = req.query.expertise;
+  const numQuestions = req.query.numQuestions;
+  const style = req.query.style;
   const questions = await getQuestions(topic, expertise, numQuestions, style);
   res.json(questions);
-}
+}       
 );
 
-app.post('/evaluation', async (req, res) => {
-  const { question, submission } = req.body;
+app.get('/evaluation', async (req, res) => {
+  const question = req.query.question;
+  const submission = req.query.submission;
   const evaluation = await getEvaluation(question, submission);
   res.json(evaluation);
-}
-);
+}   
+);  
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
