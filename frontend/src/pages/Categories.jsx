@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Categories_Main() {
     const [topic, setTopic] = useState("");
@@ -56,6 +57,7 @@ export default function Categories_Main() {
         setIsExpertiseDropdownOpen(false);
         setIsNumberDropdownOpen(false);
     };
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -67,9 +69,13 @@ export default function Categories_Main() {
         };
         console.log(details);
         try {
-            let res = await axios.post('http://localhost:5000/questions', details);
+            let res = await axios.get('http://localhost:5000/questions', {
+                params: details,
+            });
             let result = await res.data;
             console.log(result);
+            navigate('/quiz', { state: { results: result } });
+
         } catch (error) {
             console.log(error);
         }
