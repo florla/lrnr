@@ -1,5 +1,4 @@
 import React from 'react';
-
 const QuizComponent = () => {
     return (
         <>
@@ -41,7 +40,7 @@ const QuizComponent = () => {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <button className="btn-large waves-effect waves-light teal" 
+                            <button className="btn-large waves-effect waves-light teal"
                             // onClick={() => answerQuestion()}
                             >
                                 Submit Answer

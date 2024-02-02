@@ -90,7 +90,7 @@ app.get('/questions', async (req, res) => {
   const style = req.query.style;
   const questions = await getQuestions(topic, expertise, numQuestions, style);
   res.json(questions);
-}       
+}
 );
 
 app.get('/evaluation', async (req, res) => {
@@ -98,8 +98,8 @@ app.get('/evaluation', async (req, res) => {
   const submission = req.query.submission;
   const evaluation = await getEvaluation(question, submission);
   res.json(evaluation);
-}   
-);  
+}
+);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
