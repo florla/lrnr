@@ -49,10 +49,11 @@ async function getQuestions(top, exp, num, sty) {
 async function getEvaluation(ques, sub) {
   let question = ques;
   let submission = sub;
-  let prompt = `Please provide answer for the following question: '${question}' then compare that answer to the possible submission: '${submission}' to determine if that submission is correct or incorrect with an explanation why.
+  let prompt = `Please provide answer for the following question: '${question}' then compare that answer to the possible submission: '${submission}' to determine if that submission is an acceptable answer with an explanation why.
     Make sure you do not repeat the submission or question in your response.
     Make sure you do not use quotation marks in your evaluation or explanation.
     Make sure to format the response as a JSON object with only two values: 'evalutaion' and 'explanation'.
+    Make sure the evaluation value is either 'correct' or 'incorrect'.
     Please do not use any line breaks in your response.`
   const completion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
