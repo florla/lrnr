@@ -7,6 +7,7 @@ export default function Categories_Main() {
     const [expertise, setExpertise] = useState("");
     const [number, setNumber] = useState("");
     const [style, setStyle] = useState("");
+    const [message, setMessage] = useState('');
 
     // Separate states for dropdown visibility
     const [isTopicDropdownOpen, setIsTopicDropdownOpen] = useState(false);
@@ -69,12 +70,18 @@ export default function Categories_Main() {
         };
         console.log(details);
         try {
-            let res = await axios.get('http://localhost:5000/questions', {
-                params: details,
-            });
-            let result = await res.data;
-            console.log(result);
-            navigate('/quiz', { state: { results: result } });
+            if (topic === "" || expertise === "" || number === "" || style === "") {
+                setMessage('Please fill in all the fields.');
+                return;
+            } else {
+                setMessage('Submitting...');
+                let res = await axios.get('http://localhost:5000/questions', {
+                    params: details,
+                });
+                let result = await res.data;
+                console.log(result);
+                navigate('/quiz', { state: { results: result } });
+            }
 
         } catch (error) {
             console.log(error);
@@ -95,13 +102,17 @@ export default function Categories_Main() {
                         <div className="col">
                             <h3>Quiz Generation Options</h3>
                         </div>
+
                     </div>
                     <div className="row">
                         <div className="col mb-4">
                             Please choose your preferences below to generate your personalized
                             quiz
                         </div>
+                        <br />
+                        {message && <div className="col mb-4" style={{ color: message.includes('Please') ? 'red' : '#2196F3' }}>{message}</div>}
                     </div>
+
                     <br />
                     <form className="row" onSubmit={handleSubmit}>
                         <div className="input-field col s12">
@@ -493,6 +504,7 @@ export default function Categories_Main() {
                                 Submit
                             </button>
                         </div>
+
                     </form>
                 </div>
             </div>
