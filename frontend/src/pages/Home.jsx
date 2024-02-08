@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import lrnr from './lrnrlogo.png'
 
 export default function Home() {
     return (
@@ -15,7 +16,8 @@ export default function Home() {
                             height: 200
                         }}
                     >
-                        <img src="/idk" alt="Set Logo pls" style={{ maxWidth: "100%", maxHeight: "100%" }} />
+                        <img src={lrnr} alt="LRNR Logo" style={{ maxWidth: "100%", maxHeight: "100%" }} />
+                        
                     </div>
                     <div class="row center">
                         <p class="header-5 col s12 light sub-header">Your guided path to programming enlightenment</p>

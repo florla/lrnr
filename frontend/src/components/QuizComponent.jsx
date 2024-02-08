@@ -1,13 +1,29 @@
-import React from 'react';
-const QuizComponent = () => {
+import React, { useState } from 'react';
+
+export default function QuizComponent({ results }) {
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+    console.log(results);
+
+    if (!results || !results.Questions || results.Questions.length === 0) {
+        return <div>No questions available</div>;
+    }
+
+    const handleNextQuestion = () => {
+        setCurrentQuestionIndex((prevIndex) =>
+            prevIndex < results.Questions.length - 1 ? prevIndex + 1 : prevIndex
+        );
+    };
+
+    const currentQuestion = results.Questions[currentQuestionIndex];
     return (
         <>
             <div className="container">
                 <div className="section">
-                    <h1 id="ofCounter" className="header center teal-text main-header">Loading...</h1>
+                    {/* <h1 id="ofCounter" className="header center teal-text main-header">Loading...</h1> */}
                     <div className="row">
                         <h2 className="teal-text">Question</h2>
-                        <div className="preloader-wrapper active" id="questionLoader">
+                        {/* <div className="preloader-wrapper active" id="questionLoader">
                             <div className="spinner-layer spinner-blue-only">
                                 <div className="circle-clipper left">
                                     <div className="circle"></div>
@@ -19,9 +35,17 @@ const QuizComponent = () => {
                                     <div className="circle"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="col s12 header-5 quiz-transition" id="questionBlock">
-                            {/* Add question content here */}
+                <p>{currentQuestion}</p>
+            </div>
+            <div>
+                <button
+                    onClick={handleNextQuestion}
+                    disabled={currentQuestionIndex === results.Questions.length - 1}
+                >
+                    Next Question
+                </button>
                         </div>
                     </div>
                 </div>
@@ -53,5 +77,3 @@ const QuizComponent = () => {
         </>
     );
 };
-
-export default QuizComponent;
