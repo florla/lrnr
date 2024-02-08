@@ -12,8 +12,7 @@ export default function Questionaire() {
 
     return (
         <div>
-            <SingleQ results={results} />
-            <QuizComponent />
+            <QuizComponent results={results} />
             <Evaluation />
             <NextButtonComponent />
         </div>
