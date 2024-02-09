@@ -47,13 +47,15 @@ async function getQuestions(top, exp, num, sty) {
 // getQuestions('javascript', 'novice', 5, 'Captain Jack Sparrow');
 
 async function getEvaluation(ques, sub) {
+  console.log(ques, sub)
   let question = ques;
   let submission = sub;
-  let prompt = `Please provide answer for the following question: '${question}' then compare that answer to the possible submission: '${submission}' to determine if that submission is an acceptable answer with an explanation why.
+  let prompt = `Please think of the answer for the following question: '${question}' then compare that answer to the possible submission: '${submission}' to determine if that submission is an acceptable answer with an explanation why, and grade the submission of out 3 points.
     Make sure you do not repeat the submission or question in your response.
     Make sure you do not use quotation marks in your evaluation or explanation.
-    Make sure to format the response as a JSON object with only two values: 'evalutaion' and 'explanation'.
+    Make sure to format the response as a JSON object with only three values: 'evalutaion', 'explanation', and 'grade'.
     Make sure the evaluation value is either 'correct' or 'incorrect'.
+    Make sure the grade is formatted as 'grade/3'.
     Please do not use any line breaks in your response.`
   const completion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
