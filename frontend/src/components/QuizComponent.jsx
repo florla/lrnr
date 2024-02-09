@@ -21,9 +21,10 @@ const QuizComponent = ({ results }) => {
     };
 
     const answerQuestion = async () => {
+        console.log(userAnswer)
         try {
             const response = await axios.get('http://localhost:5000/evaluation', {
-                params: { ques: results.Questions[currentQuestionIndex], sub: userAnswer }
+                params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
             });
             const data = response.data;
             setEvaluationResult(data);

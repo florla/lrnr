@@ -97,6 +97,7 @@ app.get('/questions', async (req, res) => {
 app.get('/evaluation', async (req, res) => {
   const question = req.query.question;
   const submission = req.query.submission;
+
   const evaluation = await getEvaluation(question, submission);
   res.json(evaluation);
 }
