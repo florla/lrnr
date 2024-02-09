@@ -50,7 +50,7 @@ async function getEvaluation(ques, sub) {
   console.log(ques, sub)
   let question = ques;
   let submission = sub;
-  let prompt = `Please think of the answer for the following question: '${question}' then compare that answer to the possible submission: '${submission}' to determine if that submission is an acceptable answer with an explanation why, and grade the submission of out 3 points.
+  let prompt = `Please determine if the user submission: '${submission}' is an acceptable answer for the following qustion: '${question}' with an explanation why, and grade the submission of out 3 points based on the accuracy of the response, if the submission is incorrect make sure to provide the correct answer in the explanation.
     Make sure you do not repeat the submission or question in your response.
     Make sure you do not use quotation marks in your evaluation or explanation.
     Make sure to format the response as a JSON object with only three values: 'evalutaion', 'explanation', and 'grade'.
