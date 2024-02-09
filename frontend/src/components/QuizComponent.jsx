@@ -7,6 +7,7 @@ const QuizComponent = ({ results }) => {
     const [evaluationResult, setEvaluationResult] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState(true);
     const [showNextButton, setShowNextButton] = useState(false);
+    const [message, setMessage] = useState('');
 
     const handleNextQuestion = () => {
         if (currentQuestionIndex < results.Questions.length - 1) {
@@ -22,16 +23,23 @@ const QuizComponent = ({ results }) => {
 
     const answerQuestion = async () => {
         console.log(userAnswer)
-        try {
-            const response = await axios.get('http://localhost:5000/evaluation', {
-                params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
-            });
-            const data = response.data;
-            setEvaluationResult(data);
-            setShowSubmitButton(false); // Hide submit button after submitting the answer
-            setShowNextButton(true);
-        } catch (error) {
-            console.error('Error submitting answer:', error);
+        if (!userAnswer) {
+            setMessage('Please enter an answer before submitting.');
+            return;
+        } else {
+            try {
+                setMessage('');
+                const response = await axios.get('http://localhost:5000/evaluation', {
+                    params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
+                });
+                const data = response.data;
+                console.log(data);
+                setEvaluationResult(data);
+                setShowSubmitButton(false); // Hide submit button after submitting the answer
+                setShowNextButton(true);
+            } catch (error) {
+                console.error('Error submitting answer:', error);
+            }
         }
     };
 
@@ -47,6 +55,7 @@ const QuizComponent = ({ results }) => {
                             <p>{currentQuestion}</p>
                         </div>
                         <div className="col s12 header-5">
+                            {message && <div style={{ color: "red", fontSize: "12px" }}>{message}</div>}
                             <div className="input-field">
                                 <textarea
                                     id="selfAnswer"
@@ -89,6 +98,7 @@ const QuizComponent = ({ results }) => {
                             <div className="col s12 header-5">
                                 <p>Evaluation: {evaluationResult.evaluation}</p>
                                 <p>Explanation: {evaluationResult.explanation}</p>
+                                <p>Grade: {evaluationResult.grade}</p>
                             </div>
                         </div>
                     </div>
