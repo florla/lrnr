@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const QuizComponent = ({ results }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -8,6 +9,8 @@ const QuizComponent = ({ results }) => {
     const [showSubmitButton, setShowSubmitButton] = useState(true);
     const [showNextButton, setShowNextButton] = useState(false);
     const [message, setMessage] = useState('');
+    const [counter, setCounter] = useState(0);
+    const navigate = useNavigate();
 
     const handleNextQuestion = () => {
         if (currentQuestionIndex < results.Questions.length - 1) {
@@ -17,7 +20,7 @@ const QuizComponent = ({ results }) => {
             setShowSubmitButton(true); // Show submit button when moving to the next question
             setShowNextButton(false);
         } else {
-            window.location.href = 'http://localhost:3000/result';
+            navigate('/result', { state: { counter: counter, total: results.Questions.length } });
         }
     };
 
@@ -37,6 +40,11 @@ const QuizComponent = ({ results }) => {
                 setEvaluationResult(data);
                 setShowSubmitButton(false); // Hide submit button after submitting the answer
                 setShowNextButton(true);
+                if (data.evaluation === "correct") {
+                    setCounter(counter + 1);
+
+                }
+                console.log(counter);
             } catch (error) {
                 console.error('Error submitting answer:', error);
             }
