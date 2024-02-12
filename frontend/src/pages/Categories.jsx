@@ -92,6 +92,7 @@ export default function Categories_Main() {
 
     return (
         <>
+        <div class="page2">
             <div className="container">
                 <link
                     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -507,6 +508,7 @@ export default function Categories_Main() {
 
                     </form>
                 </div>
+            </div>
             </div>
         </>
     );

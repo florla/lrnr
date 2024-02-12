@@ -25,11 +25,8 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="footer-copyright">
-                <div className="container">
-                    Made by <a className="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-                </div>
-            </div>
+
+            
         </footer>
     )
 }

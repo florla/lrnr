@@ -6,11 +6,11 @@ const NextButtonComponent = () => {
     };
 
     return (
-        <div className="container hide block-transition" id="nextButtonContainer">
+        <div className="container hide block-transition center-align" id="nextButtonContainer">
             <div className="section">
                 <div className="row">
                     <div className="col">
-                        <button className="btn-large waves-effect waves-light teal" onClick={nextQuestion}>
+                        <button className="btn-large waves-effect waves-light teal center-align" onClick={nextQuestion}>
                             Next
                         </button>
                     </div>
