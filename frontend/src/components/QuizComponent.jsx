@@ -33,12 +33,13 @@ const QuizComponent = ({ results }) => {
             return;
         } else {
             try {
-                setMessage('');
+                setMessage('Grading submission...');
                 const response = await axios.get('http://localhost:5000/evaluation', {
                     params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
                 });
                 const data = response.data;
                 console.log(data);
+                setMessage('');
                 setEvaluationResult(data);
                 setShowSubmitButton(false); // Hide submit button after submitting the answer
                 setShowNextButton(true);
@@ -67,7 +68,7 @@ const QuizComponent = ({ results }) => {
                             <p>{currentQuestion}</p>
                         </div>
                         <div className="col s12 header-5">
-                            {message && <div style={{ color: "red", fontSize: "12px" }}>{message}</div>}
+                            {message && <div style={{ color: message.includes('Please') ? 'red' : '#2196F3' }}>{message}</div>}
                             <div className="input-field">
                                 <textarea
                                     id="selfAnswer"
