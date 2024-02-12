@@ -76,16 +76,16 @@ footer{
 }
 
 .page{
-    height:69vh;
+    min-height:69vh;
 }
 
 .page2{
-    height:69vh;
+    min-height:69vh;
 }
 .quizPage{
-    height:90vh;
+    min-height:90vh;
 
 }
 .results{
-    height:120vh;
+    min-height:120vh;
 }
