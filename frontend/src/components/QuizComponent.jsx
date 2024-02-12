@@ -10,6 +10,8 @@ const QuizComponent = ({ results }) => {
     const [showNextButton, setShowNextButton] = useState(false);
     const [message, setMessage] = useState('');
     const [counter, setCounter] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [points, setPoints] = useState(0);
     const navigate = useNavigate();
 
     const handleNextQuestion = () => {
@@ -20,7 +22,7 @@ const QuizComponent = ({ results }) => {
             setShowSubmitButton(true); // Show submit button when moving to the next question
             setShowNextButton(false);
         } else {
-            navigate('/result', { state: { counter: counter, total: results.Questions.length } });
+            navigate('/result', { state: { counter: counter, total: results.Questions.length, points: points, pTotal: total } });
         }
     };
 
@@ -40,6 +42,8 @@ const QuizComponent = ({ results }) => {
                 setEvaluationResult(data);
                 setShowSubmitButton(false); // Hide submit button after submitting the answer
                 setShowNextButton(true);
+                setPoints(points + parseInt(data.grade.split('/')[0]));
+                setTotal(total + parseInt(data.grade.split('/')[1]));
                 if (data.evaluation === "correct") {
                     setCounter(counter + 1);
 
@@ -70,8 +74,9 @@ const QuizComponent = ({ results }) => {
                                     className="materialize-textarea"
                                     value={userAnswer}
                                     onChange={(e) => setUserAnswer(e.target.value)}
+                                    placeholder='Answer'
                                 ></textarea>
-                                <label htmlFor="selfAnswer">Answer</label>
+                                <label htmlFor="selfAnswer"></label>
                             </div>
                         </div>
                         <div className="col s12">
