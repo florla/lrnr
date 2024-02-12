@@ -50,10 +50,12 @@ async function getEvaluation(ques, sub) {
   console.log(ques, sub)
   let question = ques;
   let submission = sub;
-  let prompt = `Please determine if the user submission: '${submission}' ACCURATELY answers the following qustion: '${question}' with an elaborate explanation, and grade the submission of out 3 points based on the accuracy and detail of the submission.
-    If you determine that the submission is incorrect, make sure to provide the correct answer inside your explanation.
-    If you determine that the submission is only partially correct, grade the submission as '1/3'.
-    Make sure you do not repeat the submission or question in your response.
+  let prompt = `You will be given a question and a submission, your role is to strictly evaluate if the submission correctly answers and provides what the question is specifically asking for, please provide an explanation and grade the submission of out 3 points based on the accuracy of the submission.
+    This is the question: '${question}' and this is the submission: '${submission}'.
+    Look out for oversimplified submissions that do not fully answer the question such as 'Yes', evaluate oversimplified submissions as incorrect.
+    Make sure your explanation is less than 20 words but still provides the correct answer to the question.
+    If the submission is partially correct, grade the submission as '1/3' and set the evaluation to 'partially correct'.
+    If the submission is incorrect or partially correct, provide the correct answer inside your explanation.
     Make sure you do not use quotation marks in your evaluation or explanation.
     Make sure to format the response as a JSON object with only three values: 'evalutaion', 'explanation', and 'grade'.
     Make sure the evaluation value is either 'correct', 'incorrect', or 'partially correct'.
