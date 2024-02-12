@@ -5,6 +5,7 @@ import lrnr from './lrnrlogo.png'
 export default function Home() {
     return (
         <>
+        <div class='fullPage'>
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
                     <br /><br />
@@ -66,6 +67,7 @@ export default function Home() {
 
                 </div>
                 <br /><br />
+            </div>
             </div>
         </>
     )

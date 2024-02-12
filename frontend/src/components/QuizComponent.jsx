@@ -77,7 +77,7 @@ const QuizComponent = ({ results }) => {
                         <div className="col s12">
                             {showSubmitButton && (
                                 <button
-                                    className="btn-large waves-effect waves-light teal"
+                                    className="btn-large waves-effect waves-light teal center-align"
                                     onClick={answerQuestion}
                                 >
                                     Submit Answer

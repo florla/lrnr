@@ -3,9 +3,10 @@ import React from 'react'
 export default function Account() {
     return (
         <>
+        <div class="page">
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
-                    <h1 class="header teal-text main-header">Account</h1>
+                    <h1 class="header teal-text main-header center-align">Account</h1>
                 </div>
             </div>
             <div class="container">
@@ -46,6 +47,7 @@ export default function Account() {
                 </div>
                 <br /><br />
             </div>
+        </div>
         </>
     )
 }
