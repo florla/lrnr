@@ -9,6 +9,7 @@ export default function Result() {
     const pTotal = location.state && location.state.pTotal;
     console.log(counter, total);
     return (
+        <div class="results">
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br /><br />
@@ -23,6 +24,7 @@ export default function Result() {
                 <br /><br />
 
             </div>
+        </div>
         </div>
     )
 }

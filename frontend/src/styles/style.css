@@ -49,7 +49,7 @@ footer{
     height: 20%;
     max-width: 100vw;
     width: 100%;
-    bottom: -100;
+    bottom: 0;
     background-color: #f8f9fa;
     padding: 1rem 0;
     text-align: center;
@@ -81,4 +81,11 @@ footer{
 
 .page2{
     height:69vh;
+}
+.quizPage{
+    height:90vh;
+
+}
+.results{
+    height:120vh;
 }
