@@ -20,7 +20,7 @@ async function getQuestions(top, exp, num, sty) {
   let numQuestions = num;
   let style = sty;
   let prompt =
-    `Please generate ${numQuestions} ${expertise} level ${topic} quiz/test questions and make sure you do not answer any of the questions.
+    `Please generate ${numQuestions} ${expertise} level ${topic} open-ended quiz/test questions and make sure you do not answer any of the questions.
     Please word the questions as if you were ${style}, make sure to integrate this in each question but keep the questions based on ${topic}.
     Please make sure the mention ${topic} in each question.
     Make sure to format your response as an array with each question being a string value in the array.
@@ -50,11 +50,13 @@ async function getEvaluation(ques, sub) {
   console.log(ques, sub)
   let question = ques;
   let submission = sub;
-  let prompt = `Please determine if the user submission: '${submission}' accurately answers the following qustion: '${question}' with an explanation, and grade the submission of out 3 points based on the accuracy of the response, if the submission is incorrect make sure to provide the correct answer in the explanation.
+  let prompt = `Please determine if the user submission: '${submission}' ACCURATELY answers the following qustion: '${question}' with an elaborate explanation, and grade the submission of out 3 points based on the accuracy and detail of the submission.
+    If you determine that the submission is incorrect, make sure to provide the correct answer inside your explanation.
+    If you determine that the submission is only partially correct, grade the submission as '1/3'.
     Make sure you do not repeat the submission or question in your response.
     Make sure you do not use quotation marks in your evaluation or explanation.
     Make sure to format the response as a JSON object with only three values: 'evalutaion', 'explanation', and 'grade'.
-    Make sure the evaluation value is either 'correct' or 'incorrect'.
+    Make sure the evaluation value is either 'correct', 'incorrect', or 'partially correct'.
     Make sure the grade is formatted as 'grade/3'.
     Please do not use any line breaks in your response.`
   const completion = await openai.chat.completions.create({
