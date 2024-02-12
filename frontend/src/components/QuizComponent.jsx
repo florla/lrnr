@@ -62,7 +62,7 @@ const QuizComponent = ({ results }) => {
             <div className="container">
                 <div className="section">
                     <div className="row">
-                        <h2 className="teal-text">Question</h2>
+                        <h2 className="black-text">Question</h2>
                         <div className="col s12 header-5 quiz-transition" id="questionBlock">
                             <p>{currentQuestion}</p>
                         </div>

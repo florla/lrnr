@@ -11,7 +11,7 @@ export default function Questionaire() {
     console.log(results);
 
     return (
-        <div>
+        <div className='quizPage'>
             <QuizComponent results={results} />
             <Evaluation />
             <NextButtonComponent />

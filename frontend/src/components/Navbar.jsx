@@ -27,7 +27,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="blue" role="navigation">
+            <nav className="blue " role="navigation">
                 <div className="nav-wrapper container" ref={navRef}>
                     <a id="logo-container" href="/" className="brand-logo">lrnr</a>
                     <ul className="right hide-on-med-and-down">
