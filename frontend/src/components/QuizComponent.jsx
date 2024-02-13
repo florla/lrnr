@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
+// Define the QuizComponent functional component that takes 'results' as props
 const QuizComponent = ({ results }) => {
+    // State variables to manage current question index, user answer, evaluation result, and button visibility
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [evaluationResult, setEvaluationResult] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState(true);
     const [showNextButton, setShowNextButton] = useState(false);
-    const [message, setMessage] = useState('');
-    const [counter, setCounter] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [points, setPoints] = useState(0);
-    const navigate = useNavigate();
 
+    // Function to handle moving to the next question or redirecting to the result page
     const handleNextQuestion = () => {
         if (currentQuestionIndex < results.Questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -22,80 +19,69 @@ const QuizComponent = ({ results }) => {
             setShowSubmitButton(true); // Show submit button when moving to the next question
             setShowNextButton(false);
         } else {
-            navigate('/result', { state: { counter: counter, total: results.Questions.length, points: points, pTotal: total } });
+            window.location.href = 'http://localhost:3000/result'; // Redirect to the result page
         }
     };
 
+    // Function to submit the answer and get evaluation result asynchronously
     const answerQuestion = async () => {
-        console.log(userAnswer)
-        if (!userAnswer) {
-            setMessage('Please enter an answer before submitting.');
-            return;
-        } else {
-            try {
-                setMessage('Grading submission...');
-                const response = await axios.get('http://localhost:5000/evaluation', {
-                    params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
-                });
-                const data = response.data;
-                console.log(data);
-                setMessage('');
-                setEvaluationResult(data);
-                setShowSubmitButton(false); // Hide submit button after submitting the answer
-                setShowNextButton(true);
-                setPoints(points + parseInt(data.grade.split('/')[0]));
-                setTotal(total + parseInt(data.grade.split('/')[1]));
-                if (data.evaluation === "correct") {
-                    setCounter(counter + 1);
-
-                }
-                console.log(counter);
-            } catch (error) {
-                console.error('Error submitting answer:', error);
-            }
+        try {
+            // Make a GET request to the evaluation endpoint with the question and user answer as parameters
+            const response = await axios.get('http://localhost:5000/evaluation', {
+                params: { ques: results.Questions[currentQuestionIndex], sub: userAnswer }
+            });
+            const data = response.data; // Extract response data
+            setEvaluationResult(data); // Set evaluation result
+            setShowSubmitButton(false); // Hide submit button after submitting the answer
+            setShowNextButton(true); // Show next button
+        } catch (error) {
+            console.error('Error submitting answer:', error); // Log any errors
         }
     };
 
+    // Get the current question based on the current index
     const currentQuestion = results.Questions[currentQuestionIndex];
 
+    // Return the JSX for rendering the quiz component
     return (
         <>
             <div className="container">
                 <div className="section">
                     <div className="row">
-                        <h2 className="black-text">Question</h2>
+                        <h2 className="teal-text">Question</h2>
                         <div className="col s12 header-5 quiz-transition" id="questionBlock">
                             <p>{currentQuestion}</p>
                         </div>
                         <div className="col s12 header-5">
-                            {message && <div style={{ color: message.includes('Please') ? 'red' : '#2196F3' }}>{message}</div>}
                             <div className="input-field">
                                 <textarea
                                     id="selfAnswer"
                                     className="materialize-textarea"
                                     value={userAnswer}
                                     onChange={(e) => setUserAnswer(e.target.value)}
-                                    placeholder='Answer'
                                 ></textarea>
-                                <label htmlFor="selfAnswer"></label>
+                                <label htmlFor="selfAnswer">Answer</label>
                             </div>
                         </div>
                         <div className="col s12">
+                            {/* Render submit button if it should be shown */}
                             {showSubmitButton && (
                                 <button
-                                    className="btn-large waves-effect waves-light teal center-align"
+                                    className="btn-large waves-effect waves-light teal"
                                     onClick={answerQuestion}
                                 >
                                     Submit Answer
                                 </button>
                             )}
                         </div>
+                        {/* Render next button if it should be shown */}
                         {showNextButton && (
                             <div className="col s12">
                                 <button
                                     onClick={handleNextQuestion}
                                     className="btn-large waves-effect waves-light teal"
                                 >
+                                    {/* If it's the last question, show 'View Results', otherwise 'Next Question' */}
                                     {currentQuestionIndex === results.Questions.length - 1 ? 'View Results' : 'Next Question'}
                                 </button>
                             </div>
@@ -104,6 +90,7 @@ const QuizComponent = ({ results }) => {
                 </div>
                 <br /><br />
             </div>
+            {/* Render evaluation result if it exists */}
             {evaluationResult && (
                 <div className="container">
                     <div className="section">
@@ -112,7 +99,6 @@ const QuizComponent = ({ results }) => {
                             <div className="col s12 header-5">
                                 <p>Evaluation: {evaluationResult.evaluation}</p>
                                 <p>Explanation: {evaluationResult.explanation}</p>
-                                <p>Grade: {evaluationResult.grade}</p>
                             </div>
                         </div>
                     </div>
