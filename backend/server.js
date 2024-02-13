@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { json } from 'express';
 import cors from 'cors';
 
 dotenv.config();
@@ -53,7 +53,7 @@ async function getEvaluation(question, submission) {
   // Prompt for OpenAI evaluation
   let prompt = `You will be given a question and a submission, your role is to strictly evaluate if the submission correctly answers and provides what the question is specifically asking for, please provide an explanation and grade the submission of out 3 points based on the accuracy of the submission.
     This is the question: '${question}' and this is the submission: '${submission}'.
-    Make sure your explanation is less than 20 words and provides the correct answer to the question.
+    Make sure your explanation provides the correct answer to the question.
     If the submission is partially correct, grade the submission as '1/3' and set the evaluation to 'partially correct'.
     If the submission is incorrect or partially correct, make sure to provide the correct answer in your explanation.
     Evaluate oversimplified submissions such as 'Yes' or 'idk' as incorrect.
