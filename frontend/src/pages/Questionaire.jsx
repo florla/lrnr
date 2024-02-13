@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 export default function Questionaire() {
     const location = useLocation();
     const results = location.state && location.state.results;
-    console.log(results);
 
     return (
         <div className='quizPage'>

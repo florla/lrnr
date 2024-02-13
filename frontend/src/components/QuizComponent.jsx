@@ -27,7 +27,6 @@ const QuizComponent = ({ results }) => {
     };
 
     const answerQuestion = async () => {
-        console.log(userAnswer)
         if (!userAnswer) {
             setMessage('Please enter an answer before submitting.');
             return;
@@ -38,7 +37,6 @@ const QuizComponent = ({ results }) => {
                     params: { question: results.Questions[currentQuestionIndex], submission: userAnswer }
                 });
                 const data = response.data;
-                console.log(data);
                 setMessage('');
                 setEvaluationResult(data);
                 setShowSubmitButton(false); // Hide submit button after submitting the answer
@@ -49,7 +47,6 @@ const QuizComponent = ({ results }) => {
                     setCounter(counter + 1);
 
                 }
-                console.log(counter);
             } catch (error) {
                 console.error('Error submitting answer:', error);
             }

@@ -7,7 +7,6 @@ export default function Result() {
     const total = location.state && location.state.total;
     const points = location.state && location.state.points;
     const pTotal = location.state && location.state.pTotal;
-    console.log(counter, total);
     return (
         <div class="results">
         <div class="section no-pad-bot" id="index-banner">

@@ -68,7 +68,6 @@ export default function Categories_Main() {
             numQuestions: number,
             style: style,
         };
-        console.log(details);
         try {
             if (topic === "" || expertise === "" || number === "" || style === "") {
                 setMessage('Please fill in all the fields.');
@@ -79,7 +78,6 @@ export default function Categories_Main() {
                     params: details,
                 });
                 let result = await res.data;
-                console.log(result);
                 navigate('/quiz', { state: { results: result } });
             }
 
