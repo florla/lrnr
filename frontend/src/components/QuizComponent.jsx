@@ -59,9 +59,8 @@ const QuizComponent = ({ results }) => {
                                     className="materialize-textarea"
                                     value={userAnswer}
                                     onChange={(e) => setUserAnswer(e.target.value)}
-                                    placeholder='Answer'
                                 ></textarea>
-                                <label htmlFor="selfAnswer"></label>
+                                <label htmlFor="selfAnswer">Answer</label>
                             </div>
                         </div>
                         <div className="col s12">
